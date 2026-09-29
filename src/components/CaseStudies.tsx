@@ -136,24 +136,29 @@ export default function CaseStudies() {
       : caseStudies.filter((item) => item.category === filter);
 
   return (
-    <section id="case-studies" className="py-20 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
+    <section id="case-studies" className="py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
+      
+      {/* Corner crosshairs at section boundary */}
+      <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+      <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200 dark:border-slate-800">
-          <div className="space-y-3 max-w-2xl">
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-              Documented Client Returns
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-slate-200 dark:border-slate-800">
+          <div className="space-y-2 max-w-2xl">
+            <div className="text-[11px] font-mono font-semibold text-slate-500 uppercase tracking-widest">
+              [04 // VERIFIED PORTFOLIOS]
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
-              Evidence of scale across diverse business verticals.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
+              Documented capital returns across diverse verticals.
             </h2>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-1.5">
+          {/* Filter Pills with touch scrolling on mobile */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {[
-              { label: "All Portfolios", value: "all" },
+              { label: "All", value: "all" },
               { label: "D2C Brands", value: "d2c" },
               { label: "Heritage Retail", value: "luxury" },
               { label: "Clinics", value: "services" },
@@ -162,9 +167,9 @@ export default function CaseStudies() {
               <button
                 key={f.value}
                 onClick={() => setFilter(f.value)}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all active:scale-[0.97] min-h-[38px] ${
                   filter === f.value
-                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-semibold"
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950"
                     : "bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-400 hover:bg-slate-200"
                 }`}
               >
@@ -174,18 +179,24 @@ export default function CaseStudies() {
           </div>
         </div>
 
-        {/* Case Studies Grid */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Mobile Swipe Tip */}
+        <div className="lg:hidden flex items-center justify-between text-[11px] text-slate-400 pt-3">
+          <span>Swipe horizontally to view case studies →</span>
+          <span className="font-mono">{filteredStudies.length} Studies</span>
+        </div>
+
+        {/* Responsive Container: Fluid Horizontal Snap Carousel on Mobile, Clean Grid on Desktop */}
+        <div className="mt-4 lg:mt-8 flex lg:grid lg:grid-cols-2 gap-4 lg:gap-6 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-none">
           {filteredStudies.map((study) => (
             <div
               key={study.id}
-              className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-6"
+              className="w-[88vw] sm:w-[420px] lg:w-auto shrink-0 snap-center bg-slate-50 dark:bg-slate-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-5"
             >
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                      {study.tag} • {study.location}
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500">
+                      {study.tag}
                     </span>
                     <h3 className="font-display font-bold text-base text-slate-900 dark:text-white mt-0.5">
                       {study.client}
@@ -202,47 +213,47 @@ export default function CaseStudies() {
                   </div>
                 </div>
 
-                <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 leading-snug">
+                <h4 className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 leading-snug">
                   {study.title}
                 </h4>
 
-                {/* Before vs After Clean Table / Card */}
-                <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      Initial Baseline
+                {/* Before vs After Clean Table */}
+                <div className="grid grid-cols-2 gap-2.5 text-xs">
+                  <div className="p-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-1">
+                    <span className="text-[10px] font-mono font-semibold uppercase text-slate-400 block">
+                      Baseline
                     </span>
-                    <div>Revenue: <strong className="text-slate-700 dark:text-slate-300">{study.before.monthlyRevenue}</strong></div>
+                    <div>Rev: <strong className="text-slate-700 dark:text-slate-300">{study.before.monthlyRevenue}</strong></div>
                     <div>ROAS: <strong className="text-slate-700 dark:text-slate-300">{study.before.roas}</strong></div>
                     <div>CPA: <strong className="text-slate-700 dark:text-slate-300">{study.before.cpa}</strong></div>
                   </div>
 
-                  <div className="p-3 rounded bg-white dark:bg-slate-850 border border-slate-300 dark:border-slate-700 space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 dark:text-white block">
-                      With CFStudio ({study.timeframe})
+                  <div className="p-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-300 dark:border-slate-700 space-y-1">
+                    <span className="text-[10px] font-mono font-semibold uppercase text-slate-900 dark:text-white block">
+                      CFStudio ({study.timeframe})
                     </span>
-                    <div>Revenue: <strong className="text-slate-900 dark:text-white">{study.after.monthlyRevenue}</strong></div>
+                    <div>Rev: <strong className="text-slate-900 dark:text-white">{study.after.monthlyRevenue}</strong></div>
                     <div>ROAS: <strong className="text-slate-900 dark:text-white">{study.after.roas}</strong></div>
                     <div>CPA: <strong className="text-slate-900 dark:text-white">{study.after.cpa}</strong></div>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-500 leading-normal">
+                <p className="text-xs text-slate-500 leading-normal line-clamp-2">
                   {study.after.solution}
                 </p>
               </div>
 
               <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
-                <div className="flex gap-1.5">
-                  {study.tags.map((t, idx) => (
-                    <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                <div className="flex gap-1 overflow-hidden">
+                  {study.tags.slice(0, 2).map((t, idx) => (
+                    <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium truncate">
                       {t}
                     </span>
                   ))}
                 </div>
                 <a
                   href="#audit-form"
-                  className="font-semibold text-slate-900 dark:text-white hover:underline flex items-center gap-0.5"
+                  className="font-semibold text-slate-900 dark:text-white hover:underline flex items-center gap-0.5 shrink-0 ml-2"
                 >
                   <span>Replicate Model</span>
                   <ChevronRight className="w-3.5 h-3.5" />

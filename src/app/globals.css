@@ -8,6 +8,7 @@
   --card: #FFFFFF;
   --card-foreground: #0B0F1A;
   --border: #E2E8F0;
+  --border-subtle: rgba(226, 232, 240, 0.7);
   --muted: #64748B;
   --primary: #0B0F1A;
   --secondary: #475569;
@@ -20,6 +21,7 @@
   --card: #111827;
   --card-foreground: #F8FAFC;
   --border: #1E293B;
+  --border-subtle: rgba(30, 41, 59, 0.7);
   --muted: #94A3B8;
   --primary: #F8FAFC;
   --secondary: #94A3B8;
@@ -32,12 +34,15 @@ body {
   font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.012em;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-/* Custom Minimalist Scrollbar */
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -46,35 +51,73 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
   background: #334155;
 }
 
-/* Clean Editorial Card Borders */
-.clean-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+/* Hide scrollbar for mobile carousels */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.dark .clean-card {
-  background: #111827;
-  border: 1px solid #1E293B;
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
-/* Minimal Grid Texture */
-.subtle-grid {
-  background-size: 40px 40px;
+/* Adaptive Architectural Gridlines Pattern */
+.designer-grid {
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
 }
 
-.dark .subtle-grid {
-  background-size: 40px 40px;
+.dark .designer-grid {
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(248, 250, 252, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(248, 250, 252, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(248, 250, 252, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(248, 250, 252, 0.035) 1px, transparent 1px);
+}
+
+/* Crosshair Corner Marks */
+.crosshair-corner {
+  position: relative;
+}
+
+.crosshair-corner::before {
+  content: "+";
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1;
+  color: #94a3b8;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.crosshair-corner-tr::after {
+  content: "+";
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1;
+  color: #94a3b8;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Mobile Touch Optimization */
+@media (max-width: 768px) {
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }

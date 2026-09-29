@@ -34,29 +34,34 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 md:py-24 relative bg-slate-50/50 dark:bg-[#0B0F1A]/50 border-b border-slate-200 dark:border-slate-800">
+    <section id="testimonials" className="py-16 md:py-24 relative bg-slate-50/50 dark:bg-[#0B0F1A]/50 border-b border-slate-200 dark:border-slate-800">
+      
+      {/* Corner crosshairs at section boundary */}
+      <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+      <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl space-y-3">
-          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Partner Feedback
+        <div className="max-w-3xl space-y-2">
+          <div className="text-[11px] font-mono font-semibold text-slate-500 uppercase tracking-widest">
+            [05 // VERIFIED REVIEWS]
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
             Client perspectives on performance and capital execution.
           </h2>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Testimonials: Fluid swipeable carousel on mobile, clean 3-col grid on desktop */}
+        <div className="mt-8 flex md:grid md:grid-cols-3 gap-4 lg:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-none">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-6"
+              className="w-[85vw] sm:w-[360px] md:w-auto shrink-0 snap-center bg-white dark:bg-slate-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-5"
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs font-mono font-medium text-slate-500">
-                  <span>VERIFIED RECORD</span>
+                  <span>RECORD #0{index + 1}</span>
                   <span className="font-semibold text-slate-900 dark:text-white">{item.metric}</span>
                 </div>
 
@@ -66,7 +71,7 @@ export default function Testimonials() {
               </div>
 
               {/* Author Info */}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
                 <div className="font-display font-bold text-sm text-slate-900 dark:text-white">
                   {item.author}
                 </div>
@@ -80,7 +85,7 @@ export default function Testimonials() {
         </div>
 
         {/* Professional Standard Grid */}
-        <div className="mt-10 p-5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs">
+        <div className="mt-8 p-4 sm:p-5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs">
           <div>
             <div className="font-bold text-slate-900 dark:text-white text-base">100%</div>
             <div className="text-slate-500 mt-0.5">Transparent Ad Accounts</div>

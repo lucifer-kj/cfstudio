@@ -7,19 +7,24 @@ import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
 import AuditBookingForm from "@/components/AuditBookingForm";
 import Footer from "@/components/Footer";
+import GridFrame from "@/components/GridFrame";
+import MobileActionDock from "@/components/MobileActionDock";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#0B0F1A] text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <GridFrame>
       <Navbar />
-      <Hero />
-      <Services />
-      <GrowthEngine />
-      <RoiCalculator />
-      <CaseStudies />
-      <Testimonials />
-      <AuditBookingForm />
+      <main className="min-h-screen flex flex-col">
+        <Hero />
+        <Services />
+        <GrowthEngine />
+        <RoiCalculator />
+        <CaseStudies />
+        <Testimonials />
+        <AuditBookingForm />
+      </main>
       <Footer />
-    </main>
+      <MobileActionDock />
+    </GridFrame>
   );
 }

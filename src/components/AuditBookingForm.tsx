@@ -49,8 +49,12 @@ export default function AuditBookingForm() {
   };
 
   return (
-    <section id="audit-form" className="py-20 md:py-24 relative bg-white dark:bg-[#0B0F1A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="audit-form" className="py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A]">
+      {/* Corner crosshairs at section boundary */}
+      <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+      <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
+
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12">
         
         <div className="max-w-3xl mx-auto">
           

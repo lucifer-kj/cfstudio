@@ -31,50 +31,35 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-white/90 dark:bg-[#0B0F1A]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/95 dark:bg-[#0B0F1A]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-3"
+          : "bg-transparent py-4 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 focus:outline-none">
-            <div className="relative h-9 w-44 sm:w-48">
-              {theme === "dark" ? (
-                <div className="flex items-center gap-2.5 h-full">
-                  <div className="relative w-7 h-7 rounded-md overflow-hidden flex items-center justify-center p-1 bg-white/5 border border-white/10">
-                    <Image
-                      src="/brand/cf-icon-mark.png"
-                      alt="CFStudio Icon"
-                      width={28}
-                      height={28}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-display font-bold text-lg tracking-tight text-white flex items-center gap-0.5 leading-none">
-                      CFStudio
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-500 ml-1"></span>
-                    </span>
-                    <span className="text-[8.5px] tracking-widest text-slate-400 font-semibold uppercase mt-1">
-                      Digital Marketing That Works
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <Image
-                  src="/brand/cfstudio-logo-full.png"
-                  alt="CFStudio Logo - Digital Marketing That Works"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
-              )}
+          {/* Custom Header Logo: Prominent CF Icon Mark + Crisp Brand Name (No tiny cramped title) */}
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden flex items-center justify-center p-0.5 bg-slate-100 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 shadow-sm transition-transform duration-200 group-hover:scale-105">
+              <Image
+                src="/brand/cf-icon-mark.png"
+                alt="CFStudio Icon Mark"
+                width={36}
+                height={36}
+                className="object-contain"
+                priority
+              />
+            </div>
+            
+            <div className="flex items-baseline">
+              <span className="font-display font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">
+                CFStudio
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 ml-1 mb-1"></span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links (Primary/Secondary Colors, Clean) */}
+          {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
@@ -87,7 +72,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Right Action Buttons */}
+          {/* Right Actions */}
           <div className="hidden sm:flex items-center gap-3">
             {/* WhatsApp Direct Chat */}
             <a
@@ -95,7 +80,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Direct WhatsApp Chat"
-              className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               title="Chat on WhatsApp"
             >
               <MessageSquare className="w-4 h-4" />
@@ -105,15 +90,15 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               aria-label="Toggle Theme"
-              className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             >
               {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
             </button>
 
-            {/* Primary Action Button (High Contrast Dark Slate / White) */}
+            {/* Primary Action Button */}
             <a
               href="#audit-form"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider shadow-sm transition-all"
             >
               <span>Book Growth Audit</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -134,7 +119,7 @@ export default function Navbar() {
               className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
