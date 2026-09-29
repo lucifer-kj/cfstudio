@@ -49,7 +49,7 @@ export default function AuditBookingForm() {
   };
 
   return (
-    <section id="audit-form" className="py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A]">
+    <section id="audit-form" className="py-14 sm:py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A]">
       {/* Corner crosshairs at section boundary */}
       <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
       <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
@@ -59,30 +59,30 @@ export default function AuditBookingForm() {
         <div className="max-w-3xl mx-auto">
           
           {/* Header */}
-          <div className="space-y-3 mb-10 text-center sm:text-left">
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-              Diagnostic Session
+          <div className="space-y-2 mb-8 text-center sm:text-left">
+            <div className="text-[11px] font-mono font-semibold text-slate-500 uppercase tracking-widest">
+              [05 // DIAGNOSTIC SESSION]
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
               Request a 30-minute growth & unit economics diagnostic.
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               Our lead growth team will review your ad accounts, pixel health, and landing page metrics to identify where you are leaking margin and where you can scale.
             </p>
           </div>
 
           {/* Form Container */}
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-5 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
             
             {submitted ? (
               /* Success Screen */
-              <div className="text-center py-10 px-4 space-y-5">
+              <div className="text-center py-8 px-2 space-y-4">
                 <div className="w-12 h-12 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-950 flex items-center justify-center mx-auto">
                   <Check className="w-6 h-6" />
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-slate-900 dark:text-white">
                     Diagnostic Request Received
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
@@ -95,7 +95,7 @@ export default function AuditBookingForm() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-[0.98] transition-all min-h-[48px]"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Connect on WhatsApp</span>
@@ -103,7 +103,7 @@ export default function AuditBookingForm() {
 
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline"
+                    className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline p-2"
                   >
                     Submit another inquiry
                   </button>
@@ -111,35 +111,40 @@ export default function AuditBookingForm() {
               </div>
             ) : (
               /* Active Form */
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 
                 {/* Row 1: Name & Work Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-name" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Full Name *
                     </label>
                     <input
+                      id="audit-name"
                       type="text"
                       required
+                      autoComplete="name"
                       placeholder="e.g. Sayan Mukherjee"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 min-h-[48px]"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-email" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Work Email *
                     </label>
                     <input
+                      id="audit-email"
                       type="email"
+                      inputMode="email"
                       required
+                      autoComplete="email"
                       placeholder="e.g. sayan@brand.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 min-h-[48px]"
                     />
                   </div>
                 </div>
@@ -147,30 +152,34 @@ export default function AuditBookingForm() {
                 {/* Row 2: WhatsApp Number & Brand Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-phone" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Phone / WhatsApp Number *
                     </label>
                     <input
+                      id="audit-phone"
                       type="tel"
+                      inputMode="tel"
                       required
+                      autoComplete="tel"
                       placeholder="+91 98300 XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 min-h-[48px]"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-brand" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Brand / Business Name *
                     </label>
                     <input
+                      id="audit-brand"
                       type="text"
                       required
                       placeholder="e.g. Bengal Heritage Organics"
                       value={formData.brandName}
                       onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 min-h-[48px]"
                     />
                   </div>
                 </div>
@@ -178,26 +187,29 @@ export default function AuditBookingForm() {
                 {/* Row 3: Website URL & Monthly Ad Spend */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-url" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Website / Online Store URL
                     </label>
                     <input
-                      type="text"
+                      id="audit-url"
+                      type="url"
+                      inputMode="url"
                       placeholder="https://yourbrand.in"
                       value={formData.websiteUrl}
                       onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500 min-h-[48px]"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    <label htmlFor="audit-spend" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Current Monthly Ad Spend
                     </label>
                     <select
+                      id="audit-spend"
                       value={formData.adSpend}
                       onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500"
+                      className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500 min-h-[48px]"
                     >
                       <option>Under ₹1 Lakh / month</option>
                       <option>₹1.5 Lakhs - ₹5 Lakhs / month</option>
@@ -210,13 +222,14 @@ export default function AuditBookingForm() {
 
                 {/* Row 4: Primary Goal */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                  <label htmlFor="audit-goal" className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                     Primary Scaling Objective
                   </label>
                   <select
+                    id="audit-goal"
                     value={formData.goal}
                     onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500"
+                    className="w-full px-3.5 py-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-700 text-base sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500 min-h-[48px]"
                   >
                     <option>Scale current ROAS without CAC spiking</option>
                     <option>Eliminate creative fatigue with high-hook direct response UGC</option>
@@ -231,7 +244,7 @@ export default function AuditBookingForm() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-70 shadow-sm"
+                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-70 shadow-sm min-h-[48px] active:scale-[0.98]"
                   >
                     {loading ? (
                       <span>Processing...</span>
@@ -247,7 +260,7 @@ export default function AuditBookingForm() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 text-xs font-semibold transition-all"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-850 hover:bg-slate-50 text-xs font-semibold transition-all min-h-[48px] active:scale-[0.98]"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>WhatsApp Direct</span>
@@ -257,12 +270,12 @@ export default function AuditBookingForm() {
                 <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 pt-1">
                   <div className="flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Confidential Non-Disclosure</span>
+                    <span>Strict NDA Confidentiality</span>
                   </div>
                   <span>•</span>
                   <div className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
-                    <span>24-Hour Review Turnaround</span>
+                    <span>24-Hour Diagnostic Teardown</span>
                   </div>
                 </div>
 

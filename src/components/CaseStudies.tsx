@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ChevronRight } from "lucide-react";
 
 interface CaseStudy {
@@ -129,34 +129,53 @@ const caseStudies: CaseStudy[] = [
 
 export default function CaseStudies() {
   const [filter, setFilter] = useState<string>("all");
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
 
   const filteredStudies =
     filter === "all"
       ? caseStudies
       : caseStudies.filter((item) => item.category === filter);
 
+  const handleMobileScroll = () => {
+    if (!mobileScrollRef.current) return;
+    const { scrollLeft, clientWidth } = mobileScrollRef.current;
+    if (clientWidth > 0) {
+      const index = Math.round(scrollLeft / (clientWidth * 0.86));
+      setActiveMobileIndex(Math.min(Math.max(index, 0), caseStudies.length - 1));
+    }
+  };
+
+  const scrollToMobileIndex = (index: number) => {
+    if (!mobileScrollRef.current) return;
+    const container = mobileScrollRef.current;
+    const itemWidth = container.clientWidth * 0.86;
+    container.scrollTo({ left: index * itemWidth, behavior: "smooth" });
+    setActiveMobileIndex(index);
+  };
+
   return (
-    <section id="case-studies" className="py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
+    <section id="case-studies" className="py-14 sm:py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
       
       {/* Corner crosshairs at section boundary */}
       <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
       <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-slate-200 dark:border-slate-800">
           <div className="space-y-2 max-w-2xl">
             <div className="text-[11px] font-mono font-semibold text-slate-500 uppercase tracking-widest">
-              [04 // VERIFIED PORTFOLIOS]
+              [03 // VERIFIED PORTFOLIOS]
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
               Documented capital returns across diverse verticals.
             </h2>
           </div>
 
-          {/* Filter Pills with touch scrolling on mobile */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+          {/* Desktop Filter Pills (Untouched) */}
+          <div className="hidden lg:flex items-center gap-1.5">
             {[
               { label: "All", value: "all" },
               { label: "D2C Brands", value: "d2c" },
@@ -167,7 +186,7 @@ export default function CaseStudies() {
               <button
                 key={f.value}
                 onClick={() => setFilter(f.value)}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all active:scale-[0.97] min-h-[38px] ${
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all ${
                   filter === f.value
                     ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950"
                     : "bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-400 hover:bg-slate-200"
@@ -179,24 +198,111 @@ export default function CaseStudies() {
           </div>
         </div>
 
-        {/* Mobile Swipe Tip */}
-        <div className="lg:hidden flex items-center justify-between text-[11px] text-slate-400 pt-3">
-          <span>Swipe horizontally to view case studies →</span>
-          <span className="font-mono">{filteredStudies.length} Studies</span>
+        {/* MOBILE SPECIFIC: Fingertip Swipeable Carousel with Interactive Pagination (lg:hidden) */}
+        <div className="lg:hidden mt-6">
+          <div 
+            ref={mobileScrollRef}
+            onScroll={handleMobileScroll}
+            className="flex gap-3.5 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory scrollbar-none touch-pan-x"
+          >
+            {caseStudies.map((study) => (
+              <div
+                key={study.id}
+                className="w-[86vw] shrink-0 snap-center bg-slate-50 dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-slate-200 dark:border-slate-800">
+                    <div>
+                      <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500">
+                        {study.tag}
+                      </span>
+                      <h3 className="font-display font-bold text-base text-slate-900 dark:text-white mt-0.5">
+                        {study.client}
+                      </h3>
+                    </div>
+
+                    <div className="text-right">
+                      <span className="text-xl font-display font-bold text-slate-900 dark:text-white">
+                        {study.highlightMetric}
+                      </span>
+                      <span className="text-[10px] text-slate-500 block">
+                        {study.metricLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-snug">
+                    {study.title}
+                  </h4>
+
+                  {/* Clean Before vs After Split */}
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="p-2.5 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-0.5">
+                      <span className="text-[9px] font-mono font-semibold uppercase text-slate-400 block">
+                        Baseline
+                      </span>
+                      <div className="text-[11px]">Rev: <strong>{study.before.monthlyRevenue}</strong></div>
+                      <div className="text-[11px]">ROAS: <strong>{study.before.roas}</strong></div>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-white dark:bg-slate-850 border border-slate-300 dark:border-slate-700 space-y-0.5">
+                      <span className="text-[9px] font-mono font-semibold uppercase text-slate-900 dark:text-white block">
+                        With CFStudio
+                      </span>
+                      <div className="text-[11px]">Rev: <strong className="text-slate-900 dark:text-white">{study.after.monthlyRevenue}</strong></div>
+                      <div className="text-[11px]">ROAS: <strong className="text-slate-900 dark:text-white">{study.after.roas}</strong></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href="#audit-form"
+                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider active:scale-[0.98] transition-all min-h-[44px]"
+                  >
+                    <span>Replicate These Results</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Accessible Touch Pagination Dots */}
+          <div className="flex items-center justify-center gap-2 pt-2" role="tablist" aria-label="Case studies pagination">
+            {caseStudies.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollToMobileIndex(idx)}
+                aria-label={`Go to case study ${idx + 1}`}
+                aria-selected={activeMobileIndex === idx}
+                role="tab"
+                className="p-2 min-w-[32px] min-h-[32px] flex items-center justify-center"
+              >
+                <span
+                  className={`block rounded-full transition-all duration-200 ${
+                    activeMobileIndex === idx
+                      ? "w-6 h-1.5 bg-slate-900 dark:bg-white"
+                      : "w-1.5 h-1.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Responsive Container: Fluid Horizontal Snap Carousel on Mobile, Clean Grid on Desktop */}
-        <div className="mt-4 lg:mt-8 flex lg:grid lg:grid-cols-2 gap-4 lg:gap-6 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-none">
+        {/* DESKTOP SPECIFIC: Full 2-Col Grid (hidden lg:grid) - 100% UNTOUCHED */}
+        <div className="mt-8 hidden lg:grid lg:grid-cols-2 gap-6">
           {filteredStudies.map((study) => (
             <div
               key={study.id}
-              className="w-[88vw] sm:w-[420px] lg:w-auto shrink-0 snap-center bg-slate-50 dark:bg-slate-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-5"
+              className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-6"
             >
-              <div className="space-y-3.5">
+              <div className="space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div>
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500">
-                      {study.tag}
+                      {study.tag} • {study.location}
                     </span>
                     <h3 className="font-display font-bold text-base text-slate-900 dark:text-white mt-0.5">
                       {study.client}
@@ -213,47 +319,47 @@ export default function CaseStudies() {
                   </div>
                 </div>
 
-                <h4 className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 leading-snug">
+                <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 leading-snug">
                   {study.title}
                 </h4>
 
                 {/* Before vs After Clean Table */}
-                <div className="grid grid-cols-2 gap-2.5 text-xs">
-                  <div className="p-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-1">
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="p-3 rounded bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-1">
                     <span className="text-[10px] font-mono font-semibold uppercase text-slate-400 block">
-                      Baseline
+                      Initial Baseline
                     </span>
-                    <div>Rev: <strong className="text-slate-700 dark:text-slate-300">{study.before.monthlyRevenue}</strong></div>
+                    <div>Revenue: <strong className="text-slate-700 dark:text-slate-300">{study.before.monthlyRevenue}</strong></div>
                     <div>ROAS: <strong className="text-slate-700 dark:text-slate-300">{study.before.roas}</strong></div>
                     <div>CPA: <strong className="text-slate-700 dark:text-slate-300">{study.before.cpa}</strong></div>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-white dark:bg-slate-850 border border-slate-300 dark:border-slate-700 space-y-1">
+                  <div className="p-3 rounded bg-white dark:bg-slate-850 border border-slate-300 dark:border-slate-700 space-y-1">
                     <span className="text-[10px] font-mono font-semibold uppercase text-slate-900 dark:text-white block">
-                      CFStudio ({study.timeframe})
+                      With CFStudio ({study.timeframe})
                     </span>
-                    <div>Rev: <strong className="text-slate-900 dark:text-white">{study.after.monthlyRevenue}</strong></div>
+                    <div>Revenue: <strong className="text-slate-900 dark:text-white">{study.after.monthlyRevenue}</strong></div>
                     <div>ROAS: <strong className="text-slate-900 dark:text-white">{study.after.roas}</strong></div>
                     <div>CPA: <strong className="text-slate-900 dark:text-white">{study.after.cpa}</strong></div>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-500 leading-normal line-clamp-2">
+                <p className="text-xs text-slate-500 leading-normal">
                   {study.after.solution}
                 </p>
               </div>
 
               <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
-                <div className="flex gap-1 overflow-hidden">
-                  {study.tags.slice(0, 2).map((t, idx) => (
-                    <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium truncate">
+                <div className="flex gap-1.5">
+                  {study.tags.map((t, idx) => (
+                    <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                       {t}
                     </span>
                   ))}
                 </div>
                 <a
                   href="#audit-form"
-                  className="font-semibold text-slate-900 dark:text-white hover:underline flex items-center gap-0.5 shrink-0 ml-2"
+                  className="font-semibold text-slate-900 dark:text-white hover:underline flex items-center gap-0.5"
                 >
                   <span>Replicate Model</span>
                   <ChevronRight className="w-3.5 h-3.5" />

@@ -76,7 +76,7 @@ export default function GrowthEngine() {
   const StepIcon = currentStage.icon;
 
   return (
-    <section id="engine" className="py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
+    <section id="engine" className="hidden lg:block py-16 md:py-24 relative bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800">
       {/* Corner crosshairs at section boundary */}
       <span className="hidden sm:block absolute -top-2.5 -left-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>
       <span className="hidden sm:block absolute -top-2.5 -right-2 font-mono text-xs text-slate-400 select-none pointer-events-none">+</span>

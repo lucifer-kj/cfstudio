@@ -125,28 +125,41 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Streamlined for Mobile Lead Generation Flow) */}
       {mobileMenuOpen && (
         <div className="sm:hidden bg-white dark:bg-[#0B0F1A] border-b border-slate-200 dark:border-slate-800 px-5 pt-3 pb-6 mt-3 space-y-3 shadow-lg">
-          <nav className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
+          <nav className="flex flex-col space-y-1">
+            {[
+              { name: "Services & Capabilities", href: "#services" },
+              { name: "Case Studies & Wins", href: "#case-studies" },
+              { name: "Partner Reviews", href: "#testimonials" },
+            ].map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white py-1"
+                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white py-2.5 min-h-[44px] flex items-center"
               >
                 {link.name}
               </a>
             ))}
           </nav>
-          <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+            <a
+              href="https://wa.me/919830000000?text=Hi%20CFStudio%2C%20I'd%20like%20to%20discuss%20our%20marketing%20strategy."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold uppercase tracking-wider min-h-[44px] flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-500" />
+              <span>Instant WhatsApp Chat</span>
+            </a>
             <a
               href="#audit-form"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider"
+              className="w-full text-center py-3 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider min-h-[44px] flex items-center justify-center"
             >
-              Book Growth Audit
+              Book Growth Diagnostic
             </a>
           </div>
         </div>
