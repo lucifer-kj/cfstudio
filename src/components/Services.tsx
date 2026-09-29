@@ -16,7 +16,6 @@ interface ServiceItem {
   id: string;
   icon: React.ElementType;
   title: string;
-  badge: string;
   headline: string;
   description: string;
   deliverables: string[];
@@ -28,104 +27,98 @@ const services: ServiceItem[] = [
   {
     id: "paid-ads",
     icon: Target,
-    title: "Performance Paid Ads",
-    badge: "Meta & Google Certified",
-    headline: "Algorithmic Media Buying That Out-Scales The Competition",
+    title: "Performance Paid Media",
+    headline: "Algorithmic media buying focused strictly on net contribution margin.",
     description:
-      "We build multi-layered acquisition funnels across Meta (Facebook & Instagram), Google Search, Performance Max, and YouTube Ads with relentless bid management and creative diversification.",
+      "We design and scale high-ROAS multi-channel campaigns across Meta (Facebook & Instagram), Google Search, Performance Max, and YouTube Ads with disciplined bid constraints and continuous creative testing.",
     deliverables: [
-      "Broad & ASC+ Dynamic Scaling architectures",
+      "Broad targeting & ASC+ dynamic scaling architectures",
       "High-intent Google Search & PMax revenue capture",
-      "Server-side Meta Conversions API (CAPI) & 1st-party tracking",
-      "Daily budget re-allocation based on net contribution margin"
+      "Server-side Meta Conversions API (CAPI) & 1st-party attribution",
+      "Capital reallocation based on net contribution margin"
     ],
     keyMetric: "5.2x",
-    metricLabel: "Average Blended ROAS",
+    metricLabel: "Historical Portfolio ROAS",
   },
   {
     id: "cro-funnels",
     icon: Layers,
-    title: "Conversion Rate Optimization & Funnels",
-    badge: "Shopify & Web Specialists",
-    headline: "Turning Expensive Ad Clicks into High-Ticket Purchases",
+    title: "Conversion Funnels & CRO",
+    headline: "Transforming ad traffic into high-ticket checkouts and lower CPA.",
     description:
-      "Driving traffic is only 30% of the battle. We redesign and re-architect your landing pages, cart drawer, and checkout experience to skyrocket conversion rates and Average Order Value (AOV).",
+      "Media buying only succeeds when the landing page converts. We engineer bespoke landing pages, mobile-optimized cart drawers, and frictionless checkout flows to expand conversion rates and Average Order Value.",
     deliverables: [
-      "Custom high-speed Headless / Next.js & Shopify landing pages",
-      "A/B split testing on offer hooks, pricing matrices & bundles",
-      "Frictionless 1-click checkout and Post-Purchase upsells",
-      "Mobile UX heatmaps & drop-off session recordings"
+      "High-speed Headless / Next.js & Shopify landers",
+      "A/B split testing on offer structures, bundles & pricing",
+      "1-click checkout optimization and post-purchase upsells",
+      "Friction analysis, heatmaps & user drop-off telemetry"
     ],
     keyMetric: "+43%",
-    metricLabel: "Avg CVR Increase in 60 Days",
+    metricLabel: "Average CVR Lift",
   },
   {
     id: "creative-studio",
     icon: Video,
-    title: "Viral UGC & Creative Studio",
-    badge: "In-House Production",
-    headline: "Scroll-Stopping Creative Loops Built For Algorithmic Feeds",
+    title: "Direct-Response Creative Lab",
+    headline: "Scroll-stopping direct-response creative loops built for algorithms.",
     description:
-      "In modern paid advertising, creative IS the targeting. Our in-house creative lab scripts, shoots, and edits 20+ bespoke ad creatives every month to prevent ad fatigue and capture market share.",
+      "Creative is modern targeting. Our in-house production team scripts, shoots, and edits 15–25 bespoke ad creatives each month to eliminate ad fatigue and capture market demand.",
     deliverables: [
-      "Direct-Response UGC video ads with hook rates > 45%",
-      "3D product visualizer renders & aesthetic lifestyle cuts",
-      "Interactive social carousel sets & dynamic feed banners",
-      "Weekly creative tear-down & iterative testing sprints"
+      "Direct-Response UGC video ads with high hook retention",
+      "3D product animations & aesthetic lifestyle cuts",
+      "Competitive whitespace teardowns & ad library gap analysis",
+      "Weekly creative performance analytics and iterative cuts"
     ],
     keyMetric: "48%+",
-    metricLabel: "Average 3-Second Hook Rate",
+    metricLabel: "Avg 3-Second Hook Retention",
   },
   {
     id: "seo-geo",
     icon: Search,
-    title: "SEO & Generative Engine Optimization",
-    badge: "AI Search Ready",
-    headline: "Dominate Google Organic and ChatGPT/Perplexity Search",
+    title: "Search & Generative Engine Optimization",
+    headline: "Establishing topical authority across Google and AI search engines.",
     description:
-      "We future-proof your brand for the new era of search. Beyond classical keyword ranking, we optimize your brand's semantic footprint for AI search engines (Perplexity, ChatGPT, Gemini, Google SGE).",
+      "We prepare your brand for modern search behavior. Beyond traditional SERP rankings, we optimize your semantic entity footprint so your brand is recommended by AI engines (Perplexity, ChatGPT, Gemini).",
     deliverables: [
       "Generative Engine Optimization (GEO) brand entity authority",
-      "High-intent commercial keyword rankings & topical clusters",
-      "Technical Core Web Vitals optimization (100/100 PageSpeed)",
-      "High-authority PR backlinks & Kolkata / Pan-India citations"
+      "Commercial high-intent keyword capture & topical clusters",
+      "Technical Core Web Vitals optimization",
+      "High-authority PR backlinks & contextual brand citations"
     ],
     keyMetric: "320%",
-    metricLabel: "Organic Traffic Growth",
+    metricLabel: "Average Organic Expansion",
   },
   {
     id: "retention",
     icon: MessageSquareCode,
-    title: "Retention & WhatsApp Automation",
-    badge: "Direct-to-Consumer Growth",
-    headline: "Compounding Customer Lifetime Value (LTV)",
+    title: "Retention & Customer LTV",
+    headline: "Compounding customer lifetime value through automated messaging.",
     description:
-      "First orders break even; repeated orders generate pure net profit. We build intelligent retention loops using automated WhatsApp broadcasts, conversational AI agents, and Klaviyo email flows.",
+      "Acquiring customers is only half the formula. We build automated retention loops using WhatsApp flows and segmented email journeys to drive repeat purchases and increase retention margin.",
     deliverables: [
-      "Automated WhatsApp abandoned cart & COD verification flows",
+      "Automated WhatsApp cart recovery & COD verification sequences",
       "VIP customer loyalty loops & replenishment triggers",
-      "Hyper-segmented Klaviyo email sequences (Browse, Post-purchase)",
-      "Predictive churn prevention & win-back campaigns"
+      "Behavioral email sequences (Browse abandonment, Post-purchase)",
+      "Win-back campaigns timed to product consumption cycles"
     ],
     keyMetric: "38%",
-    metricLabel: "Repeat Purchase Rate",
+    metricLabel: "Average Repeat Order Rate",
   },
   {
     id: "analytics",
     icon: LineChart,
-    title: "1st-Party Tracking & Data Architecture",
-    badge: "Precision Attribution",
-    headline: "Zero Blindspots. 100% Contribution Margin Visibility",
+    title: "1st-Party Tracking Architecture",
+    headline: "Full-funnel attribution and contribution margin transparency.",
     description:
-      "With iOS privacy updates and cookie deprecation, standard pixel tracking fails. We configure server-side tracking, Google Tag Manager servers, and custom contribution margin dashboards.",
+      "We eliminate data blindspots caused by browser privacy policies. By deploying server-side Google Tag Manager and direct cloud webhooks, we ensure every rupee of revenue is accurately attributed.",
     deliverables: [
-      "Custom Server-Side Google Tag Manager (sGTM) on AWS/GCP",
-      "Real-time Contribution Margin & blended MER dashboards",
-      "Triple-Whale / Northbeam style multi-touch attribution",
-      "Automated weekly executive reporting & ROI audit"
+      "Server-Side Google Tag Manager (sGTM) on dedicated cloud infrastructure",
+      "Custom contribution margin & blended Marketing Efficiency Ratio (MER) views",
+      "Cross-channel deduplication and multi-touch attribution modeling",
+      "Weekly executive performance reports"
     ],
     keyMetric: "99.4%",
-    metricLabel: "Attribution Data Accuracy",
+    metricLabel: "Attribution Data Fidelity",
   },
 ];
 
@@ -135,65 +128,51 @@ export default function Services() {
   const IconComponent = currentService.icon;
 
   return (
-    <section id="services" className="py-20 md:py-28 relative bg-slate-50/50 dark:bg-[#0B0F1A]/50 border-t border-slate-200/80 dark:border-slate-800">
+    <section id="services" className="py-20 md:py-24 relative bg-slate-50/50 dark:bg-[#0B0F1A]/50 border-b border-slate-200 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-950/70 border border-brand-300 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
-            Our Full-Funnel Capabilities
+        {/* Section Heading - Clean Monochrome */}
+        <div className="max-w-3xl space-y-3">
+          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            Capabilities & Focus Areas
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Comprehensive Growth Services Built to <span className="gradient-text">Print Profit</span>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
+            Integrated growth engineering across the entire customer lifecycle.
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-            We don’t do piecemeal gigs. We operate as your dedicated fractional CMO and revenue engineering squad.
+          <p className="text-base text-slate-600 dark:text-slate-400">
+            We operate as your dedicated revenue team — handling everything from creative production to media buying and technical data attribution.
           </p>
         </div>
 
-        {/* Desktop Interactive Tab Switcher & Display */}
-        <div className="mt-14 hidden lg:grid grid-cols-12 gap-8 items-start">
+        {/* Desktop Tab Switcher & Display */}
+        <div className="mt-12 hidden lg:grid grid-cols-12 gap-8 items-start">
           
           {/* Service Selector Tabs (5 cols) */}
-          <div className="col-span-5 space-y-2.5">
+          <div className="col-span-5 space-y-2">
             {services.map((item) => {
-              const ItemIcon = item.icon;
               const isSelected = item.id === selectedId;
               return (
                 <button
                   key={item.id}
                   onClick={() => setSelectedId(item.id)}
-                  className={`w-full text-left p-4 rounded-xl transition-all duration-200 flex items-center justify-between group ${
+                  className={`w-full text-left p-4 rounded-lg transition-all flex items-center justify-between border ${
                     isSelected
-                      ? "bg-white dark:bg-slate-900 shadow-md border-l-4 border-brand-600 dark:border-brand-500 border-y border-r border-slate-200 dark:border-slate-800"
-                      : "bg-transparent hover:bg-white/60 dark:hover:bg-slate-900/40 text-slate-600 dark:text-slate-400"
+                      ? "bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 shadow-sm text-slate-900 dark:text-white"
+                      : "bg-transparent border-transparent hover:bg-white/50 dark:hover:bg-slate-900/40 text-slate-600 dark:text-slate-400"
                   }`}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div
-                      className={`p-2.5 rounded-lg transition-colors ${
-                        isSelected
-                          ? "bg-brand-500 text-white"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 group-hover:bg-brand-50 dark:group-hover:bg-brand-950 group-hover:text-brand-600"
-                      }`}
-                    >
-                      <ItemIcon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className={`font-display font-bold text-sm ${isSelected ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-slate-300"}`}>
-                        {item.title}
-                      </div>
-                      <div className="text-xs text-slate-400 dark:text-slate-500 font-medium">
-                        {item.badge}
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-brand-500" : "bg-slate-300 dark:bg-slate-700"}`} />
+                    <span className="text-sm font-semibold tracking-tight">
+                      {item.title}
+                    </span>
                   </div>
 
                   <ArrowUpRight
                     className={`w-4 h-4 transition-transform ${
                       isSelected
-                        ? "text-brand-600 dark:text-brand-400 translate-x-0.5 -translate-y-0.5"
-                        : "text-slate-300 dark:text-slate-600 group-hover:text-slate-500"
+                        ? "text-slate-900 dark:text-white"
+                        : "text-slate-300 dark:text-slate-600"
                     }`}
                   />
                 </button>
@@ -202,70 +181,62 @@ export default function Services() {
           </div>
 
           {/* Active Service Showcase Card (7 cols) */}
-          <div className="col-span-7 bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-brand-500/5 dark:bg-brand-500/10 rounded-full blur-3xl -z-10" />
-
+          <div className="col-span-7 bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+            
             <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="p-3 rounded-xl bg-brand-50 dark:bg-brand-950 border border-brand-200 dark:border-brand-800 text-brand-600 dark:text-brand-400">
-                  <IconComponent className="w-6 h-6" />
+                <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white">
+                  <IconComponent className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider block">
-                    {currentService.badge}
-                  </span>
-                  <h3 className="text-2xl font-display font-extrabold text-slate-900 dark:text-white mt-0.5">
+                  <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white">
                     {currentService.title}
                   </h3>
                 </div>
               </div>
 
-              {/* Highlight Metric Pill */}
+              {/* Minimal Metric Callout */}
               <div className="text-right">
-                <div className="text-2xl font-display font-black text-brand-600 dark:text-brand-400">
+                <div className="text-2xl font-display font-bold text-slate-900 dark:text-white">
                   {currentService.keyMetric}
                 </div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                <div className="text-[11px] text-slate-500 font-medium">
                   {currentService.metricLabel}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 space-y-4">
-              <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200">
+            <div className="space-y-2">
+              <h4 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {currentService.headline}
               </h4>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
                 {currentService.description}
               </p>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
-              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
-                What’s Delivered In Every Sprint:
-              </h5>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Key Deliverables:
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {currentService.deliverables.map((d, index) => (
-                  <div key={index} className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-200">
-                    <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5" />
-                    </div>
+                  <div key={index} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
+                    <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                     <span>{d}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8 pt-6 flex items-center justify-between">
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                Customized for D2C, B2B & High-Ticket Brands
-              </div>
+            <div className="pt-4 flex items-center justify-between text-xs text-slate-500">
+              <span>Tailored for D2C, Retail & B2B Portfolios</span>
               <a
                 href="#audit-form"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300"
+                className="font-semibold text-slate-900 dark:text-white hover:underline flex items-center gap-1"
               >
-                <span>Request Custom Scope</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Request Strategic Scope</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
@@ -274,47 +245,29 @@ export default function Services() {
         </div>
 
         {/* Mobile & Tablet Card Grid View */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden">
           {services.map((service) => {
             const SIcon = service.icon;
             return (
               <div
                 key={service.id}
-                className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4"
+                className="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <div className="p-2.5 rounded-lg bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400">
-                    <SIcon className="w-5 h-5" />
+                  <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white">
+                    <SIcon className="w-4 h-4" />
                   </div>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
-                    {service.badge}
+                  <span className="text-xs font-bold text-slate-900 dark:text-white">
+                    {service.keyMetric}
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
                     {service.headline}
                   </p>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-3">
-                  {service.description}
-                </p>
-                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                  <div>
-                    <span className="text-lg font-bold text-brand-600 dark:text-brand-400">
-                      {service.keyMetric}
-                    </span>
-                    <span className="text-[11px] text-slate-400 block -mt-1">{service.metricLabel}</span>
-                  </div>
-                  <a
-                    href="#audit-form"
-                    className="text-xs font-bold text-brand-600 dark:text-brand-400 flex items-center gap-1"
-                  >
-                    <span>Audit Strategy</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </div>
             );

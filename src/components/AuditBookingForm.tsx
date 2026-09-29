@@ -2,17 +2,7 @@
 
 import React, { useState } from "react";
 import confetti from "canvas-confetti";
-import { 
-  Send, 
-  MessageSquare, 
-  Sparkles, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Clock, 
-  TrendingUp, 
-  ArrowRight,
-  PhoneCall
-} from "lucide-react";
+import { Send, MessageSquare, Check, ShieldCheck, Clock } from "lucide-react";
 
 export default function AuditBookingForm() {
   const [formData, setFormData] = useState({
@@ -33,112 +23,97 @@ export default function AuditBookingForm() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate audit generation & submission
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
 
-      // Trigger Confetti Celebration
       confetti({
-        particleCount: 100,
-        spread: 70,
+        particleCount: 70,
+        spread: 60,
         origin: { y: 0.6 },
-        colors: ["#6366F1", "#4F46E5", "#818CF8", "#10B981"],
+        colors: ["#0B0F1A", "#64748B", "#6366F1"],
       });
-    }, 800);
+    }, 600);
   };
 
   const getWhatsAppUrl = () => {
     const text = encodeURIComponent(
-      `Hi CFStudio Team, I would like to schedule a Growth Audit for my brand.\n\n` +
-      `*Name:* ${formData.name || "Founder"}\n` +
-      `*Brand:* ${formData.brandName || "My Brand"}\n` +
-      `*Website:* ${formData.websiteUrl || "N/A"}\n` +
-      `*Monthly Spend:* ${formData.adSpend}\n` +
-      `*Primary Focus:* ${formData.goal}`
+      `Hi CFStudio Team, I would like to schedule a growth diagnostic for our brand.\n\n` +
+      `Name: ${formData.name || "Founder"}\n` +
+      `Brand: ${formData.brandName || "My Brand"}\n` +
+      `Website: ${formData.websiteUrl || "N/A"}\n` +
+      `Monthly Spend: ${formData.adSpend}\n` +
+      `Focus: ${formData.goal}`
     );
     return `https://wa.me/919830000000?text=${text}`;
   };
 
   return (
-    <section id="audit-form" className="py-20 md:py-28 relative bg-white dark:bg-[#0B0F1A] border-t border-slate-200/80 dark:border-slate-800">
+    <section id="audit-form" className="py-20 md:py-24 relative bg-white dark:bg-[#0B0F1A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           
           {/* Header */}
-          <div className="text-center space-y-4 mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-              100% Free • No Pitch Slap • Zero Commitment
+          <div className="space-y-3 mb-10 text-center sm:text-left">
+            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Diagnostic Session
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Get Your Custom <span className="gradient-text">30-Min Growth Forensic Audit</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
+              Request a 30-minute growth & unit economics diagnostic.
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              Our growth strategists will inspect your ad accounts, pixel health, and landing page funnels to pinpoint where you’re losing margin and how to 3x your ROAS.
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+              Our lead growth team will review your ad accounts, pixel health, and landing page metrics to identify where you are leaking margin and where you can scale.
             </p>
           </div>
 
           {/* Form Container */}
-          <div className="bg-slate-50 dark:bg-slate-900/90 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
             
             {submitted ? (
               /* Success Screen */
-              <div className="text-center py-12 px-4 space-y-6">
-                <div className="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-300 dark:border-emerald-800 shadow-md">
-                  <CheckCircle2 className="w-9 h-9" />
+              <div className="text-center py-10 px-4 space-y-5">
+                <div className="w-12 h-12 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-950 flex items-center justify-center mx-auto">
+                  <Check className="w-6 h-6" />
                 </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">
-                    Audit Application Confirmed!
+                <div className="space-y-1">
+                  <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white">
+                    Diagnostic Request Received
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-lg mx-auto">
-                    Thank you, <strong className="text-slate-900 dark:text-white">{formData.name || "there"}</strong>! Our Kolkata strategy desk has received your details for <strong className="text-brand-600 dark:text-brand-400">{formData.brandName || "your brand"}</strong>.
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+                    We have received details for <strong className="text-slate-900 dark:text-white">{formData.brandName || "your brand"}</strong>. Our team in Kolkata will review your funnel and deliver your teardown within 24 hours.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 max-w-md mx-auto text-xs text-slate-600 dark:text-slate-300 space-y-2 text-left">
-                  <div className="font-bold uppercase tracking-wider text-slate-400 text-[10px]">What Happens Next:</div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-600 font-bold flex items-center justify-center text-[11px]">1</span>
-                    <span>We perform initial funnel teardown within 4 to 12 hours.</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-600 font-bold flex items-center justify-center text-[11px]">2</span>
-                    <span>We send you a private Loom breakdown & calendar invite.</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
                   <a
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-md transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
                   >
                     <MessageSquare className="w-4 h-4" />
-                    <span>Chat With Strategist on WhatsApp Now</span>
+                    <span>Connect on WhatsApp</span>
                   </a>
 
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline"
+                    className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline"
                   >
-                    Submit another response
+                    Submit another inquiry
                   </button>
                 </div>
               </div>
             ) : (
               /* Active Form */
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 
                 {/* Row 1: Name & Work Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
-                      Your Full Name *
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                      Full Name *
                     </label>
                     <input
                       type="text"
@@ -146,29 +121,29 @@ export default function AuditBookingForm() {
                       placeholder="e.g. Sayan Mukherjee"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
                     />
                   </div>
 
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Work Email *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="e.g. sayan@yourbrand.com"
+                      placeholder="e.g. sayan@brand.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
                     />
                   </div>
                 </div>
 
                 {/* Row 2: WhatsApp Number & Brand Name */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Phone / WhatsApp Number *
                     </label>
                     <input
@@ -177,13 +152,13 @@ export default function AuditBookingForm() {
                       placeholder="+91 98300 XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
                     />
                   </div>
 
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
-                      Brand / Company Name *
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                      Brand / Business Name *
                     </label>
                     <input
                       type="text"
@@ -191,75 +166,75 @@ export default function AuditBookingForm() {
                       placeholder="e.g. Bengal Heritage Organics"
                       value={formData.brandName}
                       onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
                     />
                   </div>
                 </div>
 
                 {/* Row 3: Website URL & Monthly Ad Spend */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
-                      Website / Instagram Store URL
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                      Website / Online Store URL
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. https://yourbrand.in"
+                      placeholder="https://yourbrand.in"
                       value={formData.websiteUrl}
                       onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-slate-500"
                     />
                   </div>
 
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
                       Current Monthly Ad Spend
                     </label>
                     <select
                       value={formData.adSpend}
                       onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500"
                     >
                       <option>Under ₹1 Lakh / month</option>
                       <option>₹1.5 Lakhs - ₹5 Lakhs / month</option>
                       <option>₹5 Lakhs - ₹15 Lakhs / month</option>
-                      <option>₹15 Lakhs - ₹50 Lakhs+ / month</option>
-                      <option>Not actively spending on ads yet</option>
+                      <option>₹15 Lakhs+ / month</option>
+                      <option>Not actively running paid ads yet</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Row 4: Primary Goal */}
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 block mb-2">
-                    What is your #1 growth bottleneck right now?
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 block">
+                    Primary Scaling Objective
                   </label>
                   <select
                     value={formData.goal}
                     onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-slate-500"
                   >
                     <option>Scale current ROAS without CAC spiking</option>
-                    <option>Stop ad fatigue with fresh viral UGC creatives</option>
-                    <option>Fix checkout funnel drop-offs and improve conversion rate</option>
-                    <option>Build high-volume Meta Ads & Google PMax architecture from scratch</option>
-                    <option>Dominating Local Kolkata / Pan-India High-Ticket Leads</option>
+                    <option>Eliminate creative fatigue with high-hook direct response UGC</option>
+                    <option>Optimize Shopify landing page & checkout conversions</option>
+                    <option>Build full-funnel Meta & Google Ads architecture from scratch</option>
+                    <option>Dominate local Kolkata or Pan-India high-ticket lead generation</option>
                   </select>
                 </div>
 
                 {/* Submit & WhatsApp buttons */}
-                <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-base shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transition-all disabled:opacity-70"
+                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-70 shadow-sm"
                   >
                     {loading ? (
-                      <span>Analyzing Brand Inputs...</span>
+                      <span>Processing...</span>
                     ) : (
                       <>
-                        <span>Submit Free Audit Request</span>
-                        <Send className="w-4 h-4" />
+                        <span>Submit Diagnostic Request</span>
+                        <Send className="w-3.5 h-3.5" />
                       </>
                     )}
                   </button>
@@ -268,23 +243,22 @@ export default function AuditBookingForm() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 bg-emerald-50/60 dark:bg-emerald-950/30 hover:bg-emerald-100/60 text-sm font-semibold transition-all"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 text-xs font-semibold transition-all"
                   >
-                    <MessageSquare className="w-4 h-4 text-emerald-500" />
+                    <MessageSquare className="w-3.5 h-3.5" />
                     <span>WhatsApp Direct</span>
                   </a>
                 </div>
 
-                {/* Privacy & Guarantee note */}
-                <div className="flex items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-400 pt-2">
+                <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 pt-1">
                   <div className="flex items-center gap-1">
-                    <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                    <span>Strict NDA & Data Confidentiality</span>
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>Confidential Non-Disclosure</span>
                   </div>
                   <span>•</span>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4 text-brand-500" />
-                    <span>Turnaround under 24 Hours</span>
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>24-Hour Review Turnaround</span>
                   </div>
                 </div>
 
